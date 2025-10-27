@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Турнир «Знатоки моря» имени А.О. Шабалина</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Registration Page -->
+        <div id="registrationPage" class="page active">
+            <div class="header">
+                <h1>🌊 Турнир «Знатоки моря» 🌊</h1>
+                <h2>имени А.О. Шабалина</h2>
+                <p class="subtitle">Для школьников 1–11 классов</p>
+            </div>
+            
+            <div class="registration-form">
+                <h3>Регистрация команды</h3>
+                <p class="info">Команды от 2 до 6 человек</p>
+                
+                <form id="teamForm">
+                    <div class="form-group">
+                        <label for="schoolName">Школа (полное название) *</label>
+                        <input type="text" id="schoolName" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="classNumber">Класс *</label>
+                        <input type="number" id="classNumber" min="1" max="11" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="classParallel">Параллель (буква) *</label>
+                        <select id="classParallel" required>
+                            <option value="">Выберите...</option>
+                            <option value="А">А</option>
+                            <option value="Б">Б</option>
+                            <option value="В">В</option>
+                            <option value="Г">Г</option>
+                            <option value="Д">Д</option>
+                            <option value="Е">Е</option>
+                            <option value="Ж">Ж</option>
+                            <option value="З">З</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="teamName">Название команды *</label>
+                        <input type="text" id="teamName" required>
+                    </div>
+                    
+                    <button type="submit" class="btn-primary">Начать турнир</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Quiz Page -->
+        <div id="quizPage" class="page">
+            <div class="quiz-header">
+                <div class="team-info">
+                    <h3 id="displayTeamName"></h3>
+                    <p id="displaySchoolInfo"></p>
+                </div>
+                <div class="score-info">
+                    <div class="score">Баллы: <span id="scoreDisplay">0</span></div>
+                    <div class="timer">Время: <span id="timerDisplay">00</span>с</div>
+                </div>
+            </div>
+
+            <div class="quiz-content">
+                <div class="round-info">
+                    <h2 id="roundTitle"></h2>
+                    <p id="roundDescription"></p>
+                </div>
+
+                <div class="question-container">
+                    <div class="question-number">
+                        Вопрос <span id="currentQuestion">1</span> из 15
+                    </div>
+                    
+                    <div class="question-image" id="questionImage"></div>
+                    
+                    <h3 id="questionText" class="question-text"></h3>
+                    
+                    <div id="answersContainer" class="answers-container"></div>
+                    
+                    <button id="submitAnswer" class="btn-primary" disabled>Ответить</button>
+                </div>
+
+                <div class="progress-bar">
+                    <div id="progressFill" class="progress-fill"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results Page -->
+        <div id="resultsPage" class="page">
+            <div class="results-container">
+                <h1>🏆 Турнир завершен! 🏆</h1>
+                
+                <div class="final-score">
+                    <h2>Команда: <span id="finalTeamName"></span></h2>
+                    <p id="finalSchoolInfo"></p>
+                    <div class="score-display">
+                        <p class="score-label">Итоговый результат:</p>
+                        <p class="score-value"><span id="finalScore">0</span> из 30 баллов</p>
+                    </div>
+                </div>
+
+                <div class="results-breakdown">
+                    <h3>Результаты по раундам:</h3>
+                    <div class="round-results">
+                        <div class="round-result">
+                            <span class="round-name">Раунд 1:</span>
+                            <span id="round1Score">0</span> / 5 баллов
+                        </div>
+                        <div class="round-result">
+                            <span class="round-name">Раунд 2:</span>
+                            <span id="round2Score">0</span> / 10 баллов
+                        </div>
+                        <div class="round-result">
+                            <span class="round-name">Раунд 3:</span>
+                            <span id="round3Score">0</span> / 15 баллов
+                        </div>
+                    </div>
+                </div>
+
+                <button id="generateCertificate" class="btn-primary">Получить сертификат</button>
+            </div>
+        </div>
+
+        <!-- Certificate Page -->
+        <div id="certificatePage" class="page">
+            <div class="certificate-container">
+                <div id="certificate" class="certificate">
+                    <div class="certificate-border">
+                        <div class="certificate-content">
+                            <div class="certificate-header">
+                                <h1>СЕРТИФИКАТ УЧАСТНИКА</h1>
+                                <h2>Турнир «Знатоки моря»</h2>
+                                <h3>имени А.О. Шабалина</h3>
+                            </div>
+                            
+                            <div class="certificate-body">
+                                <p class="cert-text">Настоящий сертификат подтверждает, что команда</p>
+                                <p class="cert-team-name" id="certTeamName"></p>
+                                <p class="cert-school-info" id="certSchoolInfo"></p>
+                                
+                                <p class="cert-text">приняла участие в турнире «Знатоки моря»<br>
+                                имени дважды Героя Советского Союза<br>
+                                Александра Осиповича Шабалина</p>
+                                
+                                <p class="cert-score">
+                                    Результат: <span id="certScore"></span> баллов
+                                </p>
+                            </div>
+                            
+                            <div class="certificate-footer">
+                                <p class="cert-date" id="certDate"></p>
+                                <div class="watermark">⚓</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="certificate-actions">
+                    <button id="downloadCertificate" class="btn-primary">Скачать сертификат</button>
+                    <button id="restartQuiz" class="btn-secondary">Пройти снова</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
